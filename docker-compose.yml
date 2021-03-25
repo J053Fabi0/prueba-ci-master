@@ -1,0 +1,45 @@
+version: "3"
+
+# Servicios son los contenedores
+services:
+  web:
+    build: .
+      # Ejecuta el archivo para crear la imágen y 
+      # luego el contenedor
+    env_file: .env
+      # El archivo de variables de entorno
+    depends_on:
+      - db
+      # Le dice que este contenedor solo funcionará
+      # si es contenedor db está corriendo.
+    ports:
+      - 8000:3000
+      # El puerto 8000 de mi computadora se vinculará
+      # con el 300
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      # Es el enlace entre la carpeta de trabajo y la del
+      # contenedor.
+      # El "." vincula todo el contenido de /usr/src/app, que
+      # es donde está el contenedor (declarado en Dockerfile)
+      #
+      # El segundo valor hace que la carpeta node_modules
+      # sea persistente
+  db:
+    image: mongo
+      # Es la última versión de mongo de DockerHub.
+    restart: always
+    expose:
+      - "27017"
+      # Es el puerto que queremos exponer dentro de Docker.
+      # Nadie puede escuchar este puerto fuera, a menos que
+      # se ponga "<puerto_local>:27017"
+    volumes:
+      - mongodata:/data/db
+      # En este caso, el volumen hace persistentes los datos en la
+      # base de datos
+volumes:
+  mongodata:
+  # Los datos de mongodata (el volumen que se creó justo arribita)
+  # serán persistentes al agregarse a volumes
