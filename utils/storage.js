@@ -1,5 +1,4 @@
 const { Storage } = require("@google-cloud/storage");
-const service = require("../service.json");
 
 const storage = new Storage({
   projectId: "m4sterencoding",
