@@ -7,7 +7,7 @@
     "multer": "^1.4.2"
   },
   "scripts": {
-    "test": "jest --runInBand --coverage ./test"
+    "test": "jest --runInBand --coverage --forceExit ./test"
   },
   "jest": {
     "testEnvironment": "node"
