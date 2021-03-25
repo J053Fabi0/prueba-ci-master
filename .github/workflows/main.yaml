@@ -21,12 +21,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: [actions/checkout@v2, actions/setup-node@v1]
       - name: Tests API
       # Esto es para requerir node
-        uses: actions/setup-node@v1
       - with:
         # probar esto con la versión 12 de node
         node-version: "12.x"
-      - run: npm ci
-        run: npm test
+      - run: npm ci && npm test
