@@ -1,6 +1,6 @@
 name: Api Mongoose V1
 
-on: [push]
+on: [push, pull_request]
 # cuándo se ejecutará el workflow
 
 jobs:
