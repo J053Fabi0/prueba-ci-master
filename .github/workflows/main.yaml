@@ -14,17 +14,19 @@ jobs:
       - uses: actions/checkout@v2
       # nombro el paso en el que estás
       - name: Build image Docker
-      # Comando para hacer el build
-      - run: docker build . --file Dockerfile --tag api-mongoose-v1
+        # Comando para hacer el build
+        run: docker build . --file Dockerfile --tag api-mongoose-v1
 
   # Luego hace el test
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: [actions/checkout@v2, actions/setup-node@v1]
+      - uses: actions/checkout@v2
       - name: Tests API
-      # Esto es para requerir node
-      - with:
+        # Esto es para requerir node
+        uses: actions/setup-node@v1
         # probar esto con la versión 12 de node
-        node-version: "12.x"
-      - run: npm ci && npm test
+        with:
+          node-version: "12.x"
+      - run: npm ci
+      - run: npm test
